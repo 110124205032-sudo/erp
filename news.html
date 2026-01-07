@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News & Announcements - IT Department</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>News & Announcements</h1>
+        <p>Stay updated with the latest department news</p>
+    </header>
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h3>IT Dept</h3>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Department</a>
+                <a href="faculty.html" class="nav-link">Faculty</a>
+                <a href="index.html#programs" class="nav-link">Academics</a>
+                <a href="syllabus.html" class="nav-link">Syllabus</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="news.html" class="nav-link active">Notices</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+                <a href="index.html" class="nav-link primary">Login</a>
+            </div>
+        </div>
+    </nav>
+    <section id="announcements">
+        <h2>Latest Announcements</h2>
+        <div class="news-item">
+            <h3>Seminar on AI and Machine Learning</h3>
+            <p class="date">Posted on: January 15, 2024</p>
+            <p>The department will host a seminar on Artificial Intelligence and Machine Learning next month. Guest
+                speaker: Dr. Sarah Johnson from MIT.</p>
+        </div>
+        <div class="news-item">
+            <h3>Exam Schedule Released</h3>
+            <p class="date">Posted on: January 10, 2024</p>
+            <p>Final examination schedule for Semester 1 has been released. Check your email for details.</p>
+        </div>
+        <div class="news-item">
+            <h3>Internship Opportunities</h3>
+            <p class="date">Posted on: January 5, 2024</p>
+            <p>Multiple internship opportunities available at leading tech companies. Application deadline: February 15,
+                2024.</p>
+        </div>
+    </section>
+    <section id="events">
+        <h2>Upcoming Events</h2>
+        <div class="event">
+            <h3>Tech Fest 2024</h3>
+            <p>Date: March 20-22, 2024</p>
+            <p>Annual technology festival featuring competitions, workshops, and guest lectures.</p>
+        </div>
+        <div class="event">
+            <h3>Career Guidance Session</h3>
+            <p>Date: February 10, 2024</p>
+            <p>Session on career opportunities in IT industry. Open to all students.</p>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2023 University IT Department</p>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        // Hamburger menu functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('nav-links');
+
+            hamburger.addEventListener('click', function () {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking on a link
+            const navItems = navLinks.querySelectorAll('.nav-link');
+            navItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function (event) {
+                if (!hamburger.contains(event.target) && !navLinks.contains(event.target)) {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

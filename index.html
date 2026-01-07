@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - IT Department</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="login-page">
+    <div class="background-placeholder">
+        <!-- Background image will be set here -->
+        <div class="background-overlay"></div>
+    </div>
+
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="login-header">
+                <h1>IT Department Portal</h1>
+                <p>Welcome back! Please sign in to your account.</p>
+            </div>
+
+            <div class="login-toggle">
+                <button id="student-tab" class="tab-btn active">Student Login</button>
+                <button id="faculty-tab" class="tab-btn">Faculty Login</button>
+            </div>
+
+            <div class="login-forms">
+                <form id="student-login" class="login-form active">
+                    <div class="form-group">
+                        <label for="student-username">Username</label>
+                        <input type="text" id="student-username" required placeholder="Enter your username">
+                    </div>
+                    <div class="form-group">
+                        <label for="student-password">Password</label>
+                        <input type="password" id="student-password" required placeholder="Enter your password">
+                    </div>
+                    <button type="submit" class="login-btn">Sign In as Student</button>
+                    <p class="error" id="student-error"></p>
+                </form>
+
+                <form id="faculty-login" class="login-form">
+                    <div class="form-group">
+                        <label for="faculty-username">Username</label>
+                        <input type="text" id="faculty-username" required placeholder="Enter your username">
+                    </div>
+                    <div class="form-group">
+                        <label for="faculty-password">Password</label>
+                        <input type="password" id="faculty-password" required placeholder="Enter your password">
+                    </div>
+                    <button type="submit" class="login-btn">Sign In as Faculty</button>
+                    <p class="error" id="faculty-error"></p>
+                </form>
+            </div>
+
+            <div class="login-footer">
+                <p>Demo Credentials:</p>
+                <p><strong>Student:</strong> student / student123</p>
+                <p><strong>Faculty:</strong> faculty / faculty123</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Tab switching functionality
+        const studentTab = document.getElementById('student-tab');
+        const facultyTab = document.getElementById('faculty-tab');
+        const studentForm = document.getElementById('student-login');
+        const facultyForm = document.getElementById('faculty-login');
+
+        studentTab.addEventListener('click', function () {
+            studentTab.classList.add('active');
+            facultyTab.classList.remove('active');
+            studentForm.classList.add('active');
+            facultyForm.classList.remove('active');
+        });
+
+        facultyTab.addEventListener('click', function () {
+            facultyTab.classList.add('active');
+            studentTab.classList.remove('active');
+            facultyForm.classList.add('active');
+            studentForm.classList.remove('active');
+        });
+    </script>
+</body>
+
+</html>

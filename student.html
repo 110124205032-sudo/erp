@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - IT Department</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="dashboard-page" onload="checkRole('student')">
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h3>🎓 Student Portal</h3>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Department</a>
+                <a href="faculty.html" class="nav-link">Faculty</a>
+                <a href="index.html#programs" class="nav-link">Academics</a>
+                <a href="syllabus.html" class="nav-link">Syllabus</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="news.html" class="nav-link">Notices</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+                <a href="index.html" class="nav-link logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="dashboard-main">
+        <div class="container">
+            <!-- Welcome Header -->
+            <section class="welcome-section">
+                <div class="welcome-card">
+                    <div class="welcome-content">
+                        <h1>Welcome back, <span class="student-name">Student</span>! 👋</h1>
+                        <p>Here's your academic overview for this semester</p>
+                        <div class="quick-stats">
+                            <div class="stat-item">
+                                <div class="stat-icon">📚</div>
+                                <div class="stat-info">
+                                    <span class="stat-value">6</span>
+                                    <span class="stat-label">Courses</span>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon">📊</div>
+                                <div class="stat-info">
+                                    <span class="stat-value">85%</span>
+                                    <span class="stat-label">Avg Attendance</span>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon">🎯</div>
+                                <div class="stat-info">
+                                    <span class="stat-value">4.2</span>
+                                    <span class="stat-label">GPA</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="welcome-visual">
+                        <div class="student-avatar">
+                            <img id="student-profile-pic" src="default-avatar.png" alt="Student Profile Picture"
+                                onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxjaXJjbGUgY3g9IjYwIiBjeT0iNjAiIHI9IjYwIiBmaWxsPSIjRjNGNEY2Ii8+CjxjaXJjbGUgY3g9IjYwIiBjeT0iNDUiIHI9IjIwIiBmaWxsPSIjQzRDNEM2Ii8+CjxwYXRoIGQ9Ik02MCA3NUM1MCA3NSA1MCA4NSA2MCA4NUM3MCA4NSA3MCA3NSA2MCA3NVoiIGZpbGw9IiNDNEM0RDYiLz4KPHN2Zz4=';">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="quick-actions">
+                <h2>Quick Actions</h2>
+                <div class="actions-grid">
+                    <a href="#attendance" class="action-card">
+                        <div class="action-icon">📊</div>
+                        <h3>View Attendance</h3>
+                        <p>Check your class attendance</p>
+                    </a>
+                    <a href="#grades" class="action-card">
+                        <div class="action-icon">📈</div>
+                        <h3>Academic Grades</h3>
+                        <p>View your latest grades</p>
+                    </a>
+                    <a href="#assignments" class="action-card">
+                        <div class="action-icon">📝</div>
+                        <h3>Assignments</h3>
+                        <p>Upcoming submissions</p>
+                    </a>
+                    <a href="resources.html" class="action-card">
+                        <div class="action-icon">📚</div>
+                        <h3>Study Resources</h3>
+                        <p>Access learning materials</p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Attendance Section -->
+            <section id="attendance" class="data-section">
+                <div class="section-header">
+                    <h2>Attendance Overview</h2>
+                    <div class="attendance-summary">
+                        <div class="summary-stat">
+                            <span class="summary-value">85%</span>
+                            <span class="summary-label">Overall Attendance</span>
+                        </div>
+                        <div class="attendance-bar">
+                            <div class="bar-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="attendance-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th>Attended Classes</th>
+                                <th>Total Classes</th>
+                                <th>Percentage</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="subject-info">
+                                        <div class="subject-icon">💻</div>
+                                        <span>Data Structures</span>
+                                    </div>
+                                </td>
+                                <td>34</td>
+                                <td>40</td>
+                                <td>
+                                    <span class="percentage good">85%</span>
+                                </td>
+                                <td><span class="status good">Good</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="subject-info">
+                                        <div class="subject-icon">🌐</div>
+                                        <span>Web Development</span>
+                                    </div>
+                                </td>
+                                <td>38</td>
+                                <td>40</td>
+                                <td>
+                                    <span class="percentage excellent">95%</span>
+                                </td>
+                                <td><span class="status excellent">Excellent</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="subject-info">
+                                        <div class="subject-icon">🗄️</div>
+                                        <span>Database Systems</span>
+                                    </div>
+                                </td>
+                                <td>32</td>
+                                <td>40</td>
+                                <td>
+                                    <span class="percentage average">80%</span>
+                                </td>
+                                <td><span class="status average">Average</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Grades Section -->
+            <section id="grades" class="data-section">
+                <div class="section-header">
+                    <h2>Academic Performance</h2>
+                    <div class="grade-overview">
+                        <div class="grade-circle">
+                            <span class="grade-value">A-</span>
+                            <span class="grade-label">Current GPA</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="grades-grid">
+                    <div class="grade-card">
+                        <div class="grade-header">
+                            <div class="grade-icon">💻</div>
+                            <h3>Data Structures</h3>
+                        </div>
+                        <div class="grade-display">
+                            <span class="grade-letter excellent">A</span>
+                            <span class="grade-points">4.0</span>
+                        </div>
+                        <div class="grade-details">
+                            <span>Mid-term: A</span>
+                            <span>Final: A</span>
+                        </div>
+                    </div>
+                    <div class="grade-card">
+                        <div class="grade-header">
+                            <div class="grade-icon">🌐</div>
+                            <h3>Web Development</h3>
+                        </div>
+                        <div class="grade-display">
+                            <span class="grade-letter good">A-</span>
+                            <span class="grade-points">3.7</span>
+                        </div>
+                        <div class="grade-details">
+                            <span>Mid-term: A-</span>
+                            <span>Final: A</span>
+                        </div>
+                    </div>
+                    <div class="grade-card">
+                        <div class="grade-header">
+                            <div class="grade-icon">🗄️</div>
+                            <h3>Database Systems</h3>
+                        </div>
+                        <div class="grade-display">
+                            <span class="grade-letter average">B+</span>
+                            <span class="grade-points">3.3</span>
+                        </div>
+                        <div class="grade-details">
+                            <span>Mid-term: B+</span>
+                            <span>Final: B+</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Assignments Section -->
+            <section id="assignments" class="data-section">
+                <div class="section-header">
+                    <h2>Upcoming Assignments</h2>
+                    <div class="assignment-count">
+                        <span class="count">3</span> pending assignments
+                    </div>
+                </div>
+                <div class="assignments-list">
+                    <div class="assignment-card urgent">
+                        <div class="assignment-header">
+                            <div class="assignment-icon">🚨</div>
+                            <div class="assignment-meta">
+                                <h3>Project Submission</h3>
+                                <span class="assignment-subject">Data Structures</span>
+                            </div>
+                            <div class="assignment-priority urgent">Urgent</div>
+                        </div>
+                        <div class="assignment-content">
+                            <p>Submit your final project report with complete documentation and source code.</p>
+                            <div class="assignment-details">
+                                <span>📅 Due: March 15, 2024</span>
+                                <span>⏰ 2 days left</span>
+                                <span>📊 40% of grade</span>
+                            </div>
+                        </div>
+                        <div class="assignment-actions">
+                            <button class="btn-secondary">View Details</button>
+                            <button class="btn-primary">Submit Now</button>
+                        </div>
+                    </div>
+                    <div class="assignment-card">
+                        <div class="assignment-header">
+                            <div class="assignment-icon">📝</div>
+                            <div class="assignment-meta">
+                                <h3>Lab Report</h3>
+                                <span class="assignment-subject">Web Development</span>
+                            </div>
+                            <div class="assignment-priority">Normal</div>
+                        </div>
+                        <div class="assignment-content">
+                            <p>Complete lab exercises 8-10 and submit detailed report.</p>
+                            <div class="assignment-details">
+                                <span>📅 Due: March 20, 2024</span>
+                                <span>⏰ 7 days left</span>
+                                <span>📊 20% of grade</span>
+                            </div>
+                        </div>
+                        <div class="assignment-actions">
+                            <button class="btn-secondary">View Details</button>
+                            <button class="btn-primary">Start Working</button>
+                        </div>
+                    </div>
+                    <div class="assignment-card">
+                        <div class="assignment-header">
+                            <div class="assignment-icon">🧪</div>
+                            <div class="assignment-meta">
+                                <h3>Database Design</h3>
+                                <span class="assignment-subject">Database Systems</span>
+                            </div>
+                            <div class="assignment-priority">Normal</div>
+                        </div>
+                        <div class="assignment-content">
+                            <p>Design and implement a database schema for the given requirements.</p>
+                            <div class="assignment-details">
+                                <span>📅 Due: March 25, 2024</span>
+                                <span>⏰ 12 days left</span>
+                                <span>📊 30% of grade</span>
+                            </div>
+                        </div>
+                        <div class="assignment-actions">
+                            <button class="btn-secondary">View Details</button>
+                            <button class="btn-primary">Start Working</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Load student profile picture
+        document.addEventListener('DOMContentLoaded', function () {
+            // In a real app, this would be based on the logged-in user's ID
+            // For demo, we'll load the first student's profile or use default
+            const studentProfiles = ['john-doe', 'jane-smith'];
+            const profilePic = document.getElementById('student-profile-pic');
+
+            // Try to load from localStorage (faculty uploaded)
+            for (let studentId of studentProfiles) {
+                const savedImage = localStorage.getItem(`profile_${studentId}`);
+                if (savedImage) {
+                    profilePic.src = savedImage;
+                    break; // Load the first available profile for demo
+                }
+            }
+        });
+    </script>
+
+    <style>
+        /* Dashboard Specific Styles */
+        .dashboard-main {
+            padding-top: 100px;
+            min-height: 100vh;
+        }
+
+        .welcome-section {
+            margin-bottom: 3rem;
+        }
+
+        .welcome-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius-large);
+            padding: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            box-shadow: var(--shadow-light);
+        }
+
+        .welcome-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .welcome-content p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .quick-stats {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+        }
+
+        .stat-info {
+            text-align: center;
+        }
+
+        .stat-value {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .welcome-visual {
+            flex-shrink: 0;
+        }
+
+        .student-avatar {
+            font-size: 6rem;
+            background: var(--primary-gradient);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* Quick Actions */
+        .quick-actions h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .action-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-light);
+        }
+
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .action-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .action-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .action-card p {
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        /* Data Sections */
+        .data-section {
+            margin-bottom: 3rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0;
+        }
+
+        /* Attendance Summary */
+        .attendance-summary {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .summary-stat {
+            text-align: right;
+        }
+
+        .summary-value {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--success-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .summary-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .attendance-bar {
+            width: 200px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: var(--success-gradient);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        /* Modern Table */
+        .attendance-table-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+        }
+
+        .modern-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .modern-table th {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .modern-table td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modern-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .subject-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .subject-icon {
+            font-size: 1.5rem;
+        }
+
+        .percentage {
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .percentage.excellent {
+            background: rgba(74, 222, 128, 0.2);
+            color: #4ade80;
+        }
+
+        .percentage.good {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+        }
+
+        .percentage.average {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+        }
+
+        .status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status.excellent {
+            background: rgba(74, 222, 128, 0.2);
+            color: #4ade80;
+        }
+
+        .status.good {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+        }
+
+        .status.average {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+        }
+
+        /* Grades Section */
+        .grade-overview {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .grade-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .grade-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .grade-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            color: white;
+        }
+
+        .grades-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .grade-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .grade-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .grade-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .grade-icon {
+            font-size: 2.5rem;
+            background: var(--primary-gradient);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .grade-display {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .grade-letter {
+            font-size: 2rem;
+            font-weight: 700;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .grade-letter.excellent {
+            background: rgba(74, 222, 128, 0.2);
+            color: #4ade80;
+        }
+
+        .grade-letter.good {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+        }
+
+        .grade-letter.average {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+        }
+
+        .grade-points {
+            font-size: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .grade-details {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Assignments Section */
+        .assignment-count {
+            background: var(--warning-gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .assignments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .assignment-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .assignment-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .assignment-card.urgent {
+            border-left: 4px solid #ef4444;
+            background: linear-gradient(90deg, rgba(239, 68, 68, 0.1) 0%, var(--glass-bg) 20%);
+        }
+
+        .assignment-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .assignment-icon {
+            font-size: 2rem;
+        }
+
+        .assignment-meta {
+            flex: 1;
+        }
+
+        .assignment-meta h3 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.2rem;
+        }
+
+        .assignment-subject {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .assignment-priority {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .assignment-priority.urgent {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .assignment-content p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .assignment-details {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .assignment-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .nav-link.logout {
+            background: var(--secondary-gradient);
+            color: white;
+        }
+
+        .nav-link.logout:hover {
+            background: var(--warning-gradient);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .welcome-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .quick-stats {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .actions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .grades-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .assignment-actions {
+                flex-direction: column;
+            }
+
+            .modern-table {
+                font-size: 0.9rem;
+            }
+
+            .modern-table th,
+            .modern-table td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+    <script>
+        // Hamburger menu functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('nav-links');
+
+            hamburger.addEventListener('click', function () {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking on a link
+            const navItems = navLinks.querySelectorAll('.nav-link');
+            navItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function (event) {
+                if (!hamburger.contains(event.target) && !navLinks.contains(event.target)) {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

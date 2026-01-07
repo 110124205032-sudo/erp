@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard - IT Department</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body onload="checkRole('faculty')">
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h3>Faculty Portal</h3>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Department</a>
+                <a href="faculty.html" class="nav-link active">Faculty</a>
+                <a href="index.html#programs" class="nav-link">Academics</a>
+                <a href="syllabus.html" class="nav-link">Syllabus</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="news.html" class="nav-link">Notices</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+                <a href="index.html" class="nav-link logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="dashboard-main">
+        <div class="container">
+            <header class="page-header">
+                <h1>Faculty Dashboard</h1>
+                <p>Welcome, Faculty! You have administrative access.</p>
+            </header>
+            <section id="management-tools">
+                <h2>Management Tools</h2>
+                <div class="tool-grid">
+                    <div class="tool">
+                        <h3>Upload Resources</h3>
+                        <input type="file" id="resource-upload">
+                        <button onclick="uploadResource()">Upload</button>
+                    </div>
+                    <div class="tool">
+                        <h3>Post News</h3>
+                        <input type="text" id="news-title" placeholder="News Title">
+                        <textarea id="news-content" placeholder="News Content"></textarea>
+                        <button onclick="postNews()">Post</button>
+                    </div>
+                    <div class="tool">
+                        <h3>Update Syllabus</h3>
+                        <textarea id="syllabus-content" placeholder="Update syllabus content"></textarea>
+                        <button onclick="updateSyllabus()">Update</button>
+                    </div>
+                    <div class="tool">
+                        <h3>Manage Timetable</h3>
+                        <textarea id="timetable-content" placeholder="Update timetable"></textarea>
+                        <button onclick="updateTimetable()">Update</button>
+                    </div>
+                </div>
+            </section>
+            <section id="student-management">
+                <h2>Student Management</h2>
+                <h3>Update Attendance</h3>
+                <select id="student-select">
+                    <option>John Doe</option>
+                    <option>Jane Smith</option>
+                </select>
+                <input type="number" id="attendance-percent" placeholder="Attendance %">
+                <button onclick="updateAttendance()">Update</button>
+                <h3>Manage Student Profile Pictures</h3>
+                <select id="profile-student-select">
+                    <option value="john-doe">John Doe</option>
+                    <option value="jane-smith">Jane Smith</option>
+                </select>
+                <input type="file" id="profile-pic-upload" accept="image/*">
+                <button onclick="uploadProfilePic()">Upload Profile Picture</button>
+                <div id="current-profile-preview" class="profile-preview">
+                    <h4>Current Profile Picture:</h4>
+                    <img id="current-profile-img" src="default-avatar.png" alt="Current Profile"
+                        style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+                </div>
+                <h3>Post Achievement</h3>
+                <input type="text" id="achievement-title" placeholder="Achievement Title">
+                <textarea id="achievement-desc" placeholder="Description"></textarea>
+                <button onclick="postAchievement()">Post</button>
+            </section>
+            <section id="recent-activity">
+                <h2>Recent Activity</h2>
+                <ul>
+                    <li>Updated syllabus for Data Structures</li>
+                    <li>Posted news about upcoming seminar</li>
+                    <li>Updated student attendance records</li>
+                </ul>
+            </section>
+            <footer>
+                <p>&copy; 2023 University IT Department</p>
+            </footer>
+            <script src="script.js"></script>
+            <script>
+                function uploadResource() {
+                    alert('Resource uploaded (simulated).');
+                }
+                function postNews() {
+                    alert('News posted (simulated).');
+                }
+                function updateSyllabus() {
+                    alert('Syllabus updated (simulated).');
+                }
+                function updateTimetable() {
+                    alert('Timetable updated (simulated).');
+                }
+                function updateAttendance() {
+                    alert('Attendance updated (simulated).');
+                }
+                function postAchievement() {
+                    alert('Achievement posted (simulated).');
+                }
+
+                // Profile Picture Management
+                const profileStudentSelect = document.getElementById('profile-student-select');
+                const profilePicUpload = document.getElementById('profile-pic-upload');
+                const currentProfileImg = document.getElementById('current-profile-img');
+
+                // Load profile picture when student is selected
+                profileStudentSelect.addEventListener('change', function () {
+                    const studentId = this.value;
+                    const savedImage = localStorage.getItem(`profile_${studentId}`);
+                    if (savedImage) {
+                        currentProfileImg.src = savedImage;
+                    } else {
+                        currentProfileImg.src = 'default-avatar.png';
+                    }
+                });
+
+                // Upload profile picture
+                function uploadProfilePic() {
+                    const file = profilePicUpload.files[0];
+                    const studentId = profileStudentSelect.value;
+
+                    if (!file) {
+                        alert('Please select an image file.');
+                        return;
+                    }
+
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const imageData = e.target.result;
+                        localStorage.setItem(`profile_${studentId}`, imageData);
+                        currentProfileImg.src = imageData;
+                        alert('Profile picture uploaded successfully!');
+
+                        // Update student's profile picture in student dashboard if they're currently logged in
+                        if (sessionStorage.getItem('role') === 'student') {
+                            // In a real app, this would sync across sessions
+                            // For demo, we'll just show the update
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                }
+
+                // Initialize profile preview on page load
+                document.addEventListener('DOMContentLoaded', function () {
+                    const initialStudent = profileStudentSelect.value;
+                    const savedImage = localStorage.getItem(`profile_${initialStudent}`);
+                    if (savedImage) {
+                        currentProfileImg.src = savedImage;
+                    }
+                });
+            </script>
+            <script>
+                // Hamburger menu functionality
+                document.addEventListener('DOMContentLoaded', function () {
+                    const hamburger = document.getElementById('hamburger');
+                    const navLinks = document.getElementById('nav-links');
+
+                    hamburger.addEventListener('click', function () {
+                        hamburger.classList.toggle('active');
+                        navLinks.classList.toggle('active');
+                    });
+
+                    // Close menu when clicking on a link
+                    const navItems = navLinks.querySelectorAll('.nav-link');
+                    navItems.forEach(item => {
+                        item.addEventListener('click', function () {
+                            hamburger.classList.remove('active');
+                            navLinks.classList.remove('active');
+                        });
+                    });
+
+                    // Close menu when clicking outside
+                    document.addEventListener('click', function (event) {
+                        if (!hamburger.contains(event.target) && !navLinks.contains(event.target)) {
+                            hamburger.classList.remove('active');
+                            navLinks.classList.remove('active');
+                        }
+                    });
+                });
+            </script>
+</body>
+
+</html>

@@ -1,0 +1,137 @@
+.
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - IT Department</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Contact Us</h1>
+        <p>Get in touch with the IT Department</p>
+    </header>
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h3>IT Dept</h3>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Department</a>
+                <a href="faculty.html" class="nav-link">Faculty</a>
+                <a href="index.html#programs" class="nav-link">Academics</a>
+                <a href="syllabus.html" class="nav-link">Syllabus</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="news.html" class="nav-link">Notices</a>
+                <a href="contact.html" class="nav-link active">Contact Us</a>
+                <a href="index.html" class="nav-link primary">Login</a>
+            </div>
+        </div>
+    </nav>
+    <section id="contact-info">
+        <h2>Contact Information</h2>
+        <div class="contact-details">
+            <div class="contact-item">
+                <h3>Department Head</h3>
+                <p><strong>Dr. Emily Chen</strong></p>
+                <p>Professor & Head of Department</p>
+                <p>Email: head.it@university.edu</p>
+                <p>Phone: +1 (555) 123-4567</p>
+            </div>
+            <div class="contact-item">
+                <h3>Administrative Office</h3>
+                <p>Email: admin.it@university.edu</p>
+                <p>Phone: +1 (555) 123-4568</p>
+                <p>Office Hours: 9:00 AM - 5:00 PM (Mon-Fri)</p>
+            </div>
+            <div class="contact-item">
+                <h3>Technical Support</h3>
+                <p>Email: support.it@university.edu</p>
+                <p>Phone: +1 (555) 123-4569</p>
+                <p>For IT help and technical issues</p>
+            </div>
+        </div>
+    </section>
+    <section id="location">
+        <h2>Our Location</h2>
+        <div class="location-info">
+            <div class="address">
+                <h3>Address</h3>
+                <p>IT Department<br>
+                    University Campus<br>
+                    123 Technology Drive<br>
+                    Tech City, TC 12345</p>
+            </div>
+            <div class="map-placeholder">
+                <h3>Campus Map</h3>
+                <p>Interactive map would be embedded here</p>
+                <!-- In a real site, embed Google Maps or campus map -->
+            </div>
+        </div>
+    </section>
+    <section id="contact-form">
+        <h2>Send us a Message</h2>
+        <form id="contact-form-element">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" required>
+            <label for="message">Message:</label>
+            <textarea id="message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+    <footer>
+        <p>&copy; 2023 University IT Department</p>
+    </footer>
+    <script>
+        document.getElementById('contact-form-element').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Message sent successfully! (simulated)');
+            this.reset();
+        });
+    </script>
+    <script src="script.js"></script>
+    <script>
+        // Hamburger menu functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('nav-links');
+
+            hamburger.addEventListener('click', function () {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking on a link
+            const navItems = navLinks.querySelectorAll('.nav-link');
+            navItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function (event) {
+                if (!hamburger.contains(event.target) && !navLinks.contains(event.target)) {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

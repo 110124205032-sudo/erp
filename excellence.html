@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Excellence - IT Department</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Academic Excellence</h1>
+        <p>Celebrating student achievements and departmental accomplishments</p>
+    </header>
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h3>IT Dept</h3>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Department</a>
+                <a href="faculty.html" class="nav-link">Faculty</a>
+                <a href="index.html#programs" class="nav-link">Academics</a>
+                <a href="syllabus.html" class="nav-link">Syllabus</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="news.html" class="nav-link">Notices</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+                <a href="index.html" class="nav-link primary">Login</a>
+            </div>
+        </div>
+    </nav>
+    <section id="achievements">
+        <h2>Student Achievements</h2>
+        <div class="achievement-grid">
+            <div class="achievement">
+                <h3>Programming Competition Winner</h3>
+                <p><strong>John Doe</strong> secured 1st place in the National Programming Contest 2023.</p>
+                <p>Awarded Gold Medal and scholarship worth $5000.</p>
+            </div>
+            <div class="achievement">
+                <h3>Research Publication</h3>
+                <p><strong>Jane Smith</strong> published a paper on "Machine Learning in Healthcare" in IEEE Journal.
+                </p>
+                <p>Co-authored with faculty member Dr. Robert Johnson.</p>
+            </div>
+            <div class="achievement">
+                <h3>Internship Excellence</h3>
+                <p><strong>Mike Johnson</strong> completed internship at Google with outstanding performance.</p>
+                <p>Received offer for full-time position after graduation.</p>
+            </div>
+            <div class="achievement">
+                <h3>Hackathon Champion</h3>
+                <p>Team led by <strong>Sarah Wilson</strong> won the 24-hour Hackathon organized by Microsoft.</p>
+                <p>Developed an innovative healthcare app.</p>
+            </div>
+        </div>
+    </section>
+    <section id="department-awards">
+        <h2>Department Awards</h2>
+        <div class="award-list">
+            <div class="award">
+                <h3>Best IT Department 2023</h3>
+                <p>Awarded by National Education Council for excellence in teaching and research.</p>
+            </div>
+            <div class="award">
+                <h3>Industry Partnership Excellence</h3>
+                <p>Recognized for outstanding collaboration with leading tech companies.</p>
+            </div>
+            <div class="award">
+                <h3>Research Excellence Award</h3>
+                <p>Department faculty published 50+ papers in reputed international journals.</p>
+            </div>
+        </div>
+    </section>
+    <section id="statistics">
+        <h2>Academic Statistics</h2>
+        <div class="stats-grid">
+            <div class="stat">
+                <h3>95%</h3>
+                <p>Student Placement Rate</p>
+            </div>
+            <div class="stat">
+                <h3>4.2/5</h3>
+                <p>Average Student Rating</p>
+            </div>
+            <div class="stat">
+                <h3>50+</h3>
+                <p>Research Publications</p>
+            </div>
+            <div class="stat">
+                <h3>25</h3>
+                <p>Faculty PhDs</p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2023 University IT Department</p>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        // Hamburger menu functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('nav-links');
+
+            hamburger.addEventListener('click', function () {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking on a link
+            const navItems = navLinks.querySelectorAll('.nav-link');
+            navItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function (event) {
+                if (!hamburger.contains(event.target) && !navLinks.contains(event.target)) {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

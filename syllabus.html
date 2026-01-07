@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syllabus - IT Department</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Course Syllabus</h1>
+        <p>Detailed course outlines and learning objectives</p>
+    </header>
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h3>IT Dept</h3>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Department</a>
+                <a href="faculty.html" class="nav-link">Faculty</a>
+                <a href="index.html#programs" class="nav-link">Academics</a>
+                <a href="syllabus.html" class="nav-link active">Syllabus</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="news.html" class="nav-link">Notices</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+                <a href="index.html" class="nav-link primary">Login</a>
+            </div>
+        </div>
+    </nav>
+    <section id="course-list">
+        <h2>Available Courses</h2>
+        <div class="course-accordion">
+            <button class="accordion">Data Structures & Algorithms</button>
+            <div class="panel">
+                <h3>Course Code: IT101</h3>
+                <h4>Course Description:</h4>
+                <p>This course introduces fundamental data structures and algorithms used in computer science.</p>
+                <h4>Topics Covered:</h4>
+                <ul>
+                    <li>Arrays and Linked Lists</li>
+                    <li>Stacks and Queues</li>
+                    <li>Trees and Graphs</li>
+                    <li>Sorting and Searching Algorithms</li>
+                    <li>Time Complexity Analysis</li>
+                </ul>
+                <h4>Assessment:</h4>
+                <ul>
+                    <li>Mid-term Exam: 30%</li>
+                    <li>Final Exam: 40%</li>
+                    <li>Assignments: 20%</li>
+                    <li>Project: 10%</li>
+                </ul>
+            </div>
+            <button class="accordion">Web Development</button>
+            <div class="panel">
+                <h3>Course Code: IT201</h3>
+                <h4>Course Description:</h4>
+                <p>Learn modern web development technologies and best practices.</p>
+                <h4>Topics Covered:</h4>
+                <ul>
+                    <li>HTML5 and CSS3</li>
+                    <li>JavaScript and ES6</li>
+                    <li>React.js Framework</li>
+                    <li>Node.js and Express</li>
+                    <li>Database Integration</li>
+                </ul>
+                <h4>Assessment:</h4>
+                <ul>
+                    <li>Mid-term Exam: 25%</li>
+                    <li>Final Exam: 35%</li>
+                    <li>Projects: 30%</li>
+                    <li>Lab Work: 10%</li>
+                </ul>
+            </div>
+            <button class="accordion">Database Systems</button>
+            <div class="panel">
+                <h3>Course Code: IT301</h3>
+                <h4>Course Description:</h4>
+                <p>Comprehensive study of database design, implementation, and management.</p>
+                <h4>Topics Covered:</h4>
+                <ul>
+                    <li>Relational Database Design</li>
+                    <li>SQL Programming</li>
+                    <li>Normalization</li>
+                    <li>NoSQL Databases</li>
+                    <li>Database Security</li>
+                </ul>
+                <h4>Assessment:</h4>
+                <ul>
+                    <li>Mid-term Exam: 30%</li>
+                    <li>Final Exam: 40%</li>
+                    <li>Database Project: 20%</li>
+                    <li>SQL Assignments: 10%</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2023 University IT Department</p>
+    </footer>
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+    <script src="script.js"></script>
+    <script>
+        // Hamburger menu functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('nav-links');
+
+            hamburger.addEventListener('click', function () {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking on a link
+            const navItems = navLinks.querySelectorAll('.nav-link');
+            navItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function (event) {
+                if (!hamburger.contains(event.target) && !navLinks.contains(event.target)) {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
