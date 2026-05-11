@@ -1,234 +1,57 @@
-b) 
-
-
-#include <stdio.h>
-#include <stdlib.h>
-
-int main() {
-    int f[50] = {0};
-    int index[50];
-    int ind, n, i, choice, valid;
-
-    while (1) {
-        printf("\nEnter index block: ");
-        scanf("%d", &ind);
-
-        // bounds check
-        if (ind < 0 || ind >= 50) {
-            printf("Invalid index block!\n");
-            continue;
-        }
-
-        if (f[ind] == 1) {
-            printf("Index block already allocated!\n");
-            continue;
-        }
-
-        printf("Enter number of blocks needed: ");
-        scanf("%d", &n);
-
-        printf("Enter block numbers:\n");
-
-        valid = 1;
-
-        for (i = 0; i < n; i++) {
-            scanf("%d", &index[i]);
-
-            // check bounds + availability
-            if (index[i] < 0 || index[i] >= 50 || f[index[i]] == 1) {
-                valid = 0;
-            }
-        }
-
-        if (valid) {
-            f[ind] = 1; // ✅ FIX: mark index block
-
-            for (i = 0; i < n; i++) {
-                f[index[i]] = 1;
-            }
-
-            printf("File allocated successfully!\n");
-
-            for (i = 0; i < n; i++) {
-                printf("%d -> %d\n", ind, index[i]);
-            }
-        } else {
-            printf("Allocation failed. Some blocks are invalid or already used.\n");
-        }
-
-        printf("\nAdd another file? (1 = Yes, 0 = No): ");
-        scanf("%d", &choice);
-
-        if (choice == 0)
-            break;
-    }
-
-    return 0;
-}
-
-
-Index: 2
-Blocks: 3
-Blocks entered: 5 6 7
-
-
-2 -> 5
-2 -> 6
-2 -> 7
-
-
-Index: 2
-
-Index block already allocated!
-
-
-a)
-
-
-#include <stdio.h>
+#include<stdio.h>
 
 int main()
 {
-    int nf, fc[20], fs[20];
-    int fb[100], i, j, k, flag;
+    int i, n, time, remain, tq;
+    int wt = 0, tat = 0;
 
-    printf("Enter number of files: ");
-    scanf("%d", &nf);
-
-    for (i = 0; i < nf; i++)
-    {
-        printf("\nEnter size of file %d: ", i + 1);
-        scanf("%d", &fc[i]);
-
-        printf("Enter starting block of file %d: ", i + 1);
-        scanf("%d", &fs[i]);
-    }
-
-    // Initialize all blocks as free
-    for (i = 0; i < 100; i++)
-        fb[i] = 0;
-
-    printf("\n--- Sequential File Allocation ---\n");
-
-    for (i = 0; i < nf; i++)
-    {
-        flag = 0;
-
-        // Check if required blocks are free
-        for (j = fs[i]; j < fs[i] + fc[i]; j++)
-        {
-            if (fb[j] == 1)
-            {
-                flag = 1;
-                break;
-            }
-        }
-
-        if (flag == 0)
-        {
-            // Allocate blocks
-            for (k = fs[i]; k < fs[i] + fc[i]; k++)
-                fb[k] = 1;
-
-            printf("File %d allocated from %d to %d\n",
-                   i + 1, fs[i], fs[i] + fc[i] - 1);
-        }
-        else
-        {
-            printf("File %d not allocated (no contiguous space)\n", i + 1);
-        }
-    }
-
-    return 0;
-}
-Enter number of files: 3
-
-File 1:
-size = 5
-starting block = 2
-
-File 2:
-size = 4
-starting block = 6
-
-File 3:
-size = 3
-starting block = 4
-
---- Sequential File Allocation ---
-File 1 allocated from 2 to 6
-File 2 not allocated (no contiguous space)
-File 3 not allocated (no contiguous space)
-
-
-
-c)
-#include <stdio.h>
-
-struct file
-{
-    char name[10];
-    int start, size, block[10];
-} f[10];
-
-int main()
-{
-    int i, j, n;
-
-    printf("Enter number of files: ");
+    printf("Enter number of processes: ");
     scanf("%d", &n);
 
-    for (i = 0; i < n; i++)
+    remain = n;
+
+    int bt[n], rt[n];
+
+    for(i = 0; i < n; i++)
     {
-        printf("\nEnter file name: ");
-        scanf("%s", f[i].name);
-
-        printf("Enter starting block: ");
-        scanf("%d", &f[i].start);
-
-        printf("Enter number of blocks: ");
-        scanf("%d", &f[i].size);
-
-        printf("Enter block numbers:\n");
-        for (j = 0; j < f[i].size; j++)
-        {
-            scanf("%d", &f[i].block[j]);
-        }
+        printf("Enter Burst Time for Process %d: ", i+1);
+        scanf("%d", &bt[i]);
+        rt[i] = bt[i];
     }
 
-    printf("\nFile\tStart\tSize\tBlocks\n");
+    printf("Enter Time Quantum: ");
+    scanf("%d", &tq);
 
-    for (i = 0; i < n; i++)
+    time = 0;
+    i = 0;
+
+    while(remain != 0)
     {
-        printf("%s\t%d\t%d\t", f[i].name, f[i].start, f[i].size);
-
-        for (j = 0; j < f[i].size - 1; j++)
+        if(rt[i] <= tq && rt[i] > 0)
         {
-            printf("%d -> ", f[i].block[j]);
+            time += rt[i];
+            rt[i] = 0;
+            remain--;
+
+            printf("Process P%d completed\n", i+1);
+
+            tat += time;
+            wt += time - bt[i];
+        }
+        else if(rt[i] > 0)
+        {
+            rt[i] -= tq;
+            time += tq;
         }
 
-        printf("%d\n", f[i].block[j]);
+        if(i == n-1)
+            i = 0;
+        else
+            i++;
     }
+
+    printf("\nAverage Waiting Time = %.2f", (float)wt/n);
+    printf("\nAverage Turnaround Time = %.2f\n", (float)tat/n);
 
     return 0;
 }
-
-
-Enter number of files: 2
-
-Enter file name: fileA
-Enter starting block: 5
-Enter number of blocks: 3
-Enter block numbers:
-10 11 12
-
-Enter file name: fileB
-Enter starting block: 20
-Enter number of blocks: 2
-Enter block numbers:
-30 31
-
-
-File    Start   Size    Blocks
-fileA   5       3       10 -> 11 -> 12
-fileB   20      2       30 -> 31
